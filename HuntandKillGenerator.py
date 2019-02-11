@@ -10,20 +10,8 @@ class HuntandKillCell(BaseMazeCell):
         if isinstance(self.parent, HuntandKillCell):
             self.connections.append(parent)
 
-class BlankCell(BaseMazeCell):
-    def toImgArr(self, inner_size, border_size):
-        size = inner_size + (border_size * 2)
-        img = np.zeros((size, size, 3))
-        img[:, :, :] = np.array([255, 0, 0])
-        return img.astype(np.uint8)
-
-    def __repr__(self):
-        return str(type(self))
-
 
 class HuntandKillMazeGenerator(BaseMazeGenerator):
-    def addSilhouette(self, silhouette):
-        self.maze.cells[silhouette.astype(bool)] = BlankCell(None)
 
     def getNeighboursPos(self, cell):
         directions = np.array([[0, -1], [1, 0], [0, 1], [-1, 0]])
@@ -86,6 +74,3 @@ class HuntandKillMazeGenerator(BaseMazeGenerator):
 
         self.maze.start = self.maze.cells[0, 0]
         self.maze.end = self.maze.cells[self.maze.size[0] - 1, self.maze.size[1] - 1]
-
-
-
