@@ -1,4 +1,3 @@
-
 import inspect
 from BaseMazeCreator import *
 from BaseMazeSolver import *
@@ -47,6 +46,16 @@ class BaseMazeCell:
         return np.array2string(np.asarray(self.pos))
 
 
+class BlankCell(BaseMazeCell):
+    def toImgArr(self, inner_size, border_size):
+        size = inner_size + (border_size * 2)
+        img = np.zeros((size, size, 3))
+        img[:, :, :] = np.array([255, 0, 0])
+        return img.astype(np.uint8)
+
+    def __repr__(self):
+        return str(type(self))
+
 
 class Maze(object):
     def __init__(self, size):
@@ -57,8 +66,8 @@ class Maze(object):
         self.end = self.cells[self.size[0] - 1, self.size[1] - 1]
 
     def addSilhouette(self, silhouette):
-        sil = cv2.imread("silhouette.jpg")
-        sil = (sil[:, :, 0] < 200)
+        sil = (silhouette[:, :, 0] < 200)
+        self.cells[sil.astype(bool)] = BaseMazeCell(None)
 
 
     def generateMaze(self, mazeGenerator):
