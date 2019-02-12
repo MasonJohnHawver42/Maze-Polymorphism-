@@ -1,6 +1,14 @@
 # Maze-Polymorphism-
 
 # What It Does
-This project contains a base maze class; the base maze class is made out of base cell classes. The maze is modifiyed through interfaces. There is interfaces mazeSolver and mazeGenerator; MazeSolver is implemented by mazeSolvers(First Depth Search) and MazeGenerator is impemented by MazeGenerators(Hunt and Kill). MazeGenerators create the maze, while MazeSolvers solve the Maze created by the MazeGenerators. 
 
-Overall, it's about mazes.
+# How it Does
+
+
+# What it needs
+Numpy, Opencv, Python 3 (it needs the abc package. abc package is difrent in python 2) 
+
+# How to use(Basic)
+
+
+
